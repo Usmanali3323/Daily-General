@@ -22,7 +22,7 @@ const schema  = new mongoose.Schema({
 
 app.get('/',function(req,res){
   async function home(){
-  await mongoose.connect("mongodb://127.0.0.1:27017/log");
+  await mongoose.connect("mongodb+srv://usman:123@cluster0.xrhc2gw.mongodb.net/log");
   const collection = await new mongoose.model("root",schema);
   await collection.find().then(function(result){
     res.render("home", {posts:result});
@@ -54,7 +54,7 @@ app.post('/compose',function(req,res){
   const title = req.body.postTitle;
   const postBody =req.body.postBody;
   async function compose(){
-  await mongoose.connect("mongodb://127.0.0.1:27017/log");
+  await mongoose.connect("mongodb+srv://usman:123@cluster0.xrhc2gw.mongodb.net/log");
   const collection = await new mongoose.model("root",schema);
   const item = new collection({
     name: title,
@@ -79,7 +79,7 @@ compose();
 let shorttitle;
 app.get("/posts/:topic", function(req,res){
   async function posts(){
-    await mongoose.connect("mongodb://127.0.0.1:27017/log");
+    await mongoose.connect("mongodb+srv://usman:123@cluster0.xrhc2gw.mongodb.net/log");
     const collection = new mongoose.model("root",schema);
     collection.find().then(function(result){
       result.forEach(function(r){
